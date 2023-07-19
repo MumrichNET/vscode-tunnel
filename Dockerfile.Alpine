@@ -1,6 +1,12 @@
 FROM alpine:3.18.2 AS alpine
+ARG VSCODE_COMMIT_ID=
 RUN apk update && apk add curl tar
-WORKDIR /vscode
-RUN curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64' --output vscode_cli.tgz
-RUN tar -xf ./vscode_cli.tgz
-CMD ./code tunnel --no-sleep --accept-server-license-terms --name $(hostname)
+# WORKDIR "/root/.vscode-server/bin/${VSCODE_COMMIT_ID}"
+# RUN curl -Lk "https://update.code.visualstudio.com/commit:${VSCODE_COMMIT_ID}/server-linux-x64/stable" \
+#     --output vscode-server-linux-x64.tgz
+# RUN tar -xvzf vscode-server-linux-x64.tgz \
+#     --strip-components 1
+# RUN curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64' --output vscode_cli.tgz
+# RUN tar -xf ./vscode_cli.tgz
+# CMD ./code tunnel --no-sleep --accept-server-license-terms --name $(hostname)
+CMD sleep infinite
